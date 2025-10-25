@@ -1156,7 +1156,807 @@ system("pause");
 return 0; 
 } `,
 
+"Sum of Prime Digits": `#include<iostream>
+using namespace std;
+bool isPrime(int n){ if(n<2) return false; for(int i=2;i*i<=n;i++) if(n%i==0) return false; return true;}
+int main(){ 
+    int n,sum=0; 
+    cin>>n; 
+    while(n){ 
+        int d=n%10; 
+        if(isPrime(d)) sum+=d; 
+        n/=10;
+    } 
+    cout<<"Sum of prime digits: "<<sum<<endl; 
+    return 0;
+}`,
+
+"Count Divisors of a Number": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n,count=0; 
+    cin>>n; 
+    for(int i=1;i<=n;i++) 
+        if(n%i==0) count++; 
+    cout<<"Number of divisors: "<<count<<endl; 
+    return 0;
+}`,
+
+"Check Armstrong in Decimal": `#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){ 
+    int n,temp,sum=0,digits=0; 
+    cin>>n; 
+    temp=n; 
+    while(temp){ temp/=10; digits++;} 
+    temp=n; 
+    while(temp){ sum+=pow(temp%10,digits); temp/=10;} 
+    if(sum==n) cout<<"Armstrong"<<endl; else cout<<"Not Armstrong"<<endl; 
+    return 0;
+}`,
+
+"Check Armstrong in Binary": `#include<iostream>
+#include<cmath>
+using namespace std;
+int main(){ 
+    int n,temp,sum=0,digits=0; 
+    cin>>n; 
+    string bin=""; 
+    temp=n; 
+    while(temp){ bin=(temp%2==0?"0":"1")+bin; temp/=2;} 
+    digits=bin.size(); 
+    for(char c: bin) sum+=pow(c-'0',digits); 
+    if(sum==stoi(bin,0,2)) cout<<"Armstrong"<<endl; else cout<<"Not Armstrong"<<endl; 
+    return 0;
+}`,
+
+"Factorial Digit Sum": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n; cin>>n; 
+    unsigned long long fact=1; 
+    for(int i=1;i<=n;i++) fact*=i; 
+    int sum=0; 
+    while(fact){ sum+=fact%10; fact/=10;} 
+    cout<<"Sum of factorial digits: "<<sum<<endl; 
+    return 0;
+}`,
+
+"Sum of Squares": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n,sum=0; 
+    cin>>n; 
+    for(int i=1;i<=n;i++) sum+=i*i; 
+    cout<<"Sum of squares: "<<sum<<endl; 
+    return 0;
+}`,
+
+"Sum of Cubes": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n,sum=0; 
+    cin>>n; 
+    for(int i=1;i<=n;i++) sum+=i*i*i; 
+    cout<<"Sum of cubes: "<<sum<<endl; 
+    return 0;
+}`,
+
+"Nth Fibonacci Number": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n; cin>>n; 
+    long long a=0,b=1,c; 
+    if(n==1){ cout<<a; return 0;} 
+    for(int i=2;i<=n;i++){ c=a+b; a=b; b=c;} 
+    cout<<b<<endl; 
+    return 0;
+}`,
+
+"Sum of Fibonacci Series": `#include<iostream>
+using namespace std;
+int main(){ 
+    int n; cin>>n; 
+    long long a=0,b=1,c,sum=0; 
+    for(int i=1;i<=n;i++){ sum+=a; c=a+b; a=b; b=c;} 
+    cout<<"Sum of Fibonacci series: "<<sum<<endl; 
+    return 0;
+}`,
+
+"Check Strong Prime": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isPrime(int n){ if(n<2) return false; for(int i=2;i*i<=n;i++) if(n%i==0) return false; return true;}
+int main(){ 
+    int n; cin>>n; 
+    if(!isPrime(n)){ cout<<"Not Strong Prime"<<endl; return 0;} 
+    int prev=n-1; while(prev>1&&!isPrime(prev)) prev--; 
+    int next=n+1; while(!isPrime(next)) next++; 
+    if(n>(prev+next)/2) cout<<"Strong Prime"<<endl; else cout<<"Not Strong Prime"<<endl; 
+    return 0;
+}`,
+
+"Find GCD Using Recursion": `#include<iostream>
+using namespace std;
+int gcd(int a,int b){ if(b==0) return a; return gcd(b,a%b);}
+int main(){ int a,b; cin>>a>>b; cout<<"GCD: "<<gcd(a,b)<<endl; return 0;}`,
+
+"Find LCM Using Recursion": `#include<iostream>
+using namespace std;
+int gcd(int a,int b){ if(b==0) return a; return gcd(b,a%b);}
+int main(){ int a,b; cin>>a>>b; cout<<"LCM: "<<(a*b)/gcd(a,b)<<endl; return 0;}`,
+
+"Reverse a String Recursively": `#include<iostream>
+#include<string>
+using namespace std;
+void reverseStr(string &s,int l,int r){ if(l>=r) return; swap(s[l],s[r]); reverseStr(s,l+1,r-1);}
+int main(){ string s; cin>>s; reverseStr(s,0,s.size()-1); cout<<s<<endl; return 0;}`,
+
+"Palindrome String Recursive": `#include<iostream>
+#include<string>
+using namespace std;
+bool isPalindrome(string &s,int l,int r){ if(l>=r) return true; return (s[l]==s[r] && isPalindrome(s,l+1,r-1));}
+int main(){ string s; cin>>s; if(isPalindrome(s,0,s.size()-1)) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Check Perfect Square Recursively": `#include<iostream>
+using namespace std;
+bool isPerfect(int n,int i=1){ if(i*i==n) return true; if(i*i>n) return false; return isPerfect(n,i+1);}
+int main(){ int n; cin>>n; if(isPerfect(n)) cout<<"Perfect Square"<<endl; else cout<<"Not Perfect Square"<<endl; return 0;}`,
+
+"Check Palindrome Number Recursively": `#include<iostream>
+using namespace std;
+bool isPalindrome(int n,int rev=0,int orig=-1){ if(orig==-1) orig=n; if(n==0) return orig==rev; return isPalindrome(n/10,rev*10+n%10,orig);}
+int main(){ int n; cin>>n; if(isPalindrome(n)) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Sum of Even Numbers in Array": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n],sum=0; for(int i=0;i<n;i++){ cin>>arr[i]; if(arr[i]%2==0) sum+=arr[i];} cout<<"Sum of even numbers: "<<sum<<endl; return 0;}`,
+
+"Sum of Odd Numbers in Array": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n],sum=0; for(int i=0;i<n;i++){ cin>>arr[i]; if(arr[i]%2!=0) sum+=arr[i];} cout<<"Sum of odd numbers: "<<sum<<endl; return 0;}`,
+
+"Count Even Numbers in Array": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n],count=0; for(int i=0;i<n;i++){ cin>>arr[i]; if(arr[i]%2==0) count++;} cout<<"Count of even numbers: "<<count<<endl; return 0;}`,
+
+"Count Odd Numbers in Array": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n],count=0; for(int i=0;i<n;i++){ cin>>arr[i]; if(arr[i]%2!=0) count++;} cout<<"Count of odd numbers: "<<count<<endl; return 0;}`,
+
+"Find Largest Element in Array Recursively": `#include<iostream>
+using namespace std;
+int largest(int arr[],int n){ if(n==1) return arr[0]; int temp=largest(arr,n-1); return (temp>arr[n-1]?temp:arr[n-1]);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Largest element: "<<largest(arr,n)<<endl; return 0;}`,
+
+"Find Smallest Element in Array Recursively": `#include<iostream>
+using namespace std;
+int smallest(int arr[],int n){ if(n==1) return arr[0]; int temp=smallest(arr,n-1); return (temp<arr[n-1]?temp:arr[n-1]);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Smallest element: "<<smallest(arr,n)<<endl; return 0;}`,
+
+"Sum of Array Recursively": `#include<iostream>
+using namespace std;
+int sumArray(int arr[],int n){ if(n==0) return 0; return arr[n-1]+sumArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Sum of array: "<<sumArray(arr,n)<<endl; return 0;}`,
+
+"Product of Array Recursively": `#include<iostream>
+using namespace std;
+int productArray(int arr[],int n){ if(n==0) return 1; return arr[n-1]*productArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Product of array: "<<productArray(arr,n)<<endl; return 0;}`,
+
+"Reverse Array Recursively": `#include<iostream>
+using namespace std;
+void reverseArray(int arr[],int l,int r){ if(l>=r) return; swap(arr[l],arr[r]); reverseArray(arr,l+1,r-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; reverseArray(arr,0,n-1); for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Array Sorted Ascending": `#include<iostream>
+using namespace std;
+bool isSorted(int arr[],int n){ if(n==1) return true; return arr[n-2]<=arr[n-1] && isSorted(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; if(isSorted(arr,n)) cout<<"Sorted"<<endl; else cout<<"Not Sorted"<<endl; return 0;}`,
+
+"Check Array Sorted Descending": `#include<iostream>
+using namespace std;
+bool isSortedDesc(int arr[],int n){ if(n==1) return true; return arr[n-2]>=arr[n-1] && isSortedDesc(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; if(isSortedDesc(arr,n)) cout<<"Sorted Descending"<<endl; else cout<<"Not Sorted Descending"<<endl; return 0;}`,
+
+"Merge Two Sorted Arrays": `#include<iostream>
+using namespace std;
+int main(){ int n,m; cin>>n>>m; int a[n],b[m]; for(int i=0;i<n;i++) cin>>a[i]; for(int i=0;i<m;i++) cin>>b[i]; int c[n+m],i=0,j=0,k=0; while(i<n && j<m) c[k++]=(a[i]<b[j]?a[i++]:b[j++]); while(i<n) c[k++]=a[i++]; while(j<m) c[k++]=b[j++]; for(int i=0;i<k;i++) cout<<c[i]<<" "; return 0;}`,
+
+"Intersection of Two Arrays": `#include<iostream>
+#include<algorithm>
+using namespace std;
+int main(){ int n,m; cin>>n>>m; int a[n],b[m]; for(int i=0;i<n;i++) cin>>a[i]; for(int i=0;i<m;i++) cin>>b[i]; sort(a,a+n); sort(b,b+m); int i=0,j=0; while(i<n && j<m){ if(a[i]==b[j]){ cout<<a[i]<<" "; i++; j++; } else if(a[i]<b[j]) i++; else j++;} return 0;}`,
+
+"Union of Two Arrays": `#include<iostream>
+#include<algorithm>
+using namespace std;
+int main(){ int n,m; cin>>n>>m; int a[n],b[m]; for(int i=0;i<n;i++) cin>>a[i]; for(int i=0;i<m;i++) cin>>b[i]; int c[n+m]; for(int i=0;i<n;i++) c[i]=a[i]; for(int i=0;i<m;i++) c[n+i]=b[i]; sort(c,c+n+m); for(int i=0;i<n+m;i++) if(i==0 || c[i]!=c[i-1]) cout<<c[i]<<" "; return 0;}`,
+
+"Rotate Array Left": `#include<iostream>
+using namespace std;
+int main(){ int n,d; cin>>n>>d; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; int temp[d]; for(int i=0;i<d;i++) temp[i]=arr[i]; for(int i=d;i<n;i++) arr[i-d]=arr[i]; for(int i=0;i<d;i++) arr[n-d+i]=temp[i]; for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Rotate Array Right": `#include<iostream>
+using namespace std;
+int main(){ int n,d; cin>>n>>d; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; int temp[d]; for(int i=0;i<d;i++) temp[i]=arr[n-d+i]; for(int i=n-1;i>=d;i--) arr[i]=arr[i-d]; for(int i=0;i<d;i++) arr[i]=temp[i]; for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Find Max Subarray Sum": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; int maxsum=arr[0]; for(int i=0;i<n;i++){ int sum=0; for(int j=i;j<n;j++){ sum+=arr[j]; if(sum>maxsum) maxsum=sum;}} cout<<"Max subarray sum: "<<maxsum<<endl; return 0;}`,
+"Check Anagram Recursively": `#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+bool isAnagram(string a,string b,int n){ if(n==0) return true; sort(a.begin(),a.end()); sort(b.begin(),b.end()); return a==b;}
+int main(){ string s1,s2; cin>>s1>>s2; if(isAnagram(s1,s2,s1.size())) cout<<"Anagram"<<endl; else cout<<"Not Anagram"<<endl; return 0;}`,
+
+"Count Vowels in String Recursively": `#include<iostream>
+#include<string>
+using namespace std;
+int countVowels(string s,int i=0){ if(i>=s.size()) return 0; char c=tolower(s[i]); return ((c=='a'||c=='e'||c=='i'||c=='o'||c=='u')+countVowels(s,i+1));}
+int main(){ string s; cin>>s; cout<<"Vowels count: "<<countVowels(s)<<endl; return 0;}`,
+
+"Count Consonants in String Recursively": `#include<iostream>
+#include<string>
+using namespace std;
+int countConsonants(string s,int i=0){ if(i>=s.size()) return 0; char c=tolower(s[i]); return ((c>='a'&&c<='z'&&!string("aeiou").contains(c))+countConsonants(s,i+1));}
+int main(){ string s; cin>>s; int count=0; for(char c:s){ if(isalpha(c)&&string("aeiouAEIOU").find(c)==string::npos) count++;} cout<<"Consonants count: "<<count<<endl; return 0;}`,
+
+"Remove Duplicate Characters": `#include<iostream>
+#include<string>
+using namespace std;
+int main(){ string s,res=""; cin>>s; for(char c:s) if(res.find(c)==string::npos) res+=c; cout<<res<<endl; return 0;}`,
+
+"Find First Non-Repeating Character": `#include<iostream>
+#include<string>
+using namespace std;
+int main(){ string s; cin>>s; int freq[256]={0}; for(char c:s) freq[c]++; for(char c:s) if(freq[c]==1){ cout<<c<<endl; break;} return 0;}`,
+
+"Count Character Frequency Recursively": `#include<iostream>
+#include<string>
+using namespace std;
+void countFreq(string s,int freq[256],int i=0){ if(i>=s.size()) return; freq[s[i]]++; countFreq(s,freq,i+1);}
+int main(){ string s; cin>>s; int freq[256]={0}; countFreq(s,freq); for(int i=0;i<256;i++) if(freq[i]>0) cout<<char(i)<<"="<<freq[i]<<endl; return 0;}`,
+
+"Find ASCII Difference Between Strings": `#include<iostream>
+#include<string>
+using namespace std;
+int main(){ string s1,s2; cin>>s1>>s2; int diff=0; for(int i=0;i<min(s1.size(),s2.size());i++) diff+=abs(s1[i]-s2[i]); cout<<"ASCII difference: "<<diff<<endl; return 0;}`,
+
+"Check String Palindrome Ignoring Case": `#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+int main(){ string s; cin>>s; transform(s.begin(),s.end(),s.begin(),::tolower); string rev=s; reverse(rev.begin(),rev.end()); if(s==rev) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Sum of Digits Recursively": `#include<iostream>
+using namespace std;
+int sumDigits(int n){ if(n==0) return 0; return n%10+sumDigits(n/10);}
+int main(){ int n; cin>>n; cout<<"Sum of digits: "<<sumDigits(n)<<endl; return 0;}`,
+
+"Multiply Digits Recursively": `#include<iostream>
+using namespace std;
+int multiplyDigits(int n){ if(n==0) return 1; return (n%10==0?1:n%10)*multiplyDigits(n/10);}
+int main(){ int n; cin>>n; cout<<"Product of digits: "<<multiplyDigits(n)<<endl; return 0;}`,
+
+"Count Digits Recursively": `#include<iostream>
+using namespace std;
+int countDigits(int n){ if(n==0) return 0; return 1+countDigits(n/10);}
+int main(){ int n; cin>>n; cout<<"Number of digits: "<<countDigits(n)<<endl; return 0;}`,
+
+"Power Using Recursion": `#include<iostream>
+using namespace std;
+int power(int a,int b){ if(b==0) return 1; return a*power(a,b-1);}
+int main(){ int a,b; cin>>a>>b; cout<<"Power: "<<power(a,b)<<endl; return 0;}`,
+
+"Check Prime Using Recursion": `#include<iostream>
+using namespace std;
+bool isPrime(int n,int i=2){ if(n<2) return false; if(i*i>n) return true; if(n%i==0) return false; return isPrime(n,i+1);}
+int main(){ int n; cin>>n; if(isPrime(n)) cout<<"Prime"<<endl; else cout<<"Not Prime"<<endl; return 0;}`,
+
+"Display Prime Numbers Recursively": `#include<iostream>
+using namespace std;
+bool isPrime(int n,int i=2){ if(n<2) return false; if(i*i>n) return true; if(n%i==0) return false; return isPrime(n,i+1);}
+void printPrimes(int n){ if(n<=0) return; printPrimes(n-1); if(isPrime(n)) cout<<n<<" ";}
+int main(){ int n; cin>>n; printPrimes(n); return 0;}`,
+
+"Fibonacci Using Memoization": `#include<iostream>
+using namespace std;
+long long fib[1000];
+long long fibonacci(int n){ if(n<=1) return n; if(fib[n]!=-1) return fib[n]; return fib[n]=fibonacci(n-1)+fibonacci(n-2);}
+int main(){ int n; cin>>n; for(int i=0;i<1000;i++) fib[i]=-1; cout<<fibonacci(n)<<endl; return 0;}`,
+
+"Check Happy Number Recursively": `#include<iostream>
+using namespace std;
+int sumSquares(int n){ if(n==0) return 0; return (n%10)*(n%10)+sumSquares(n/10);}
+bool isHappy(int n){ if(n==1) return true; if(n==4) return false; return isHappy(sumSquares(n));}
+int main(){ int n; cin>>n; if(isHappy(n)) cout<<"Happy"<<endl; else cout<<"Not Happy"<<endl; return 0;}`,
+
+"Check Duck Number Recursively": `#include<iostream>
+using namespace std;
+bool isDuck(int n){ if(n==0) return false; if(n%10==0) return true; return isDuck(n/10);}
+int main(){ int n; cin>>n; if(isDuck(n)) cout<<"Duck Number"<<endl; else cout<<"Not Duck Number"<<endl; return 0;}`,
+
+"Kaprekar Numbers in Range": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isKaprekar(int n){ long long sq=(long long)n*n; string s=to_string(sq); int sum=0; int mid=s.size()/2; sum=stoi(s.substr(0,mid))+stoi(s.substr(mid)); return sum==n;}
+int main(){ int low,high; cin>>low>>high; for(int i=low;i<=high;i++) if(isKaprekar(i)) cout<<i<<" "; return 0;}`,
+
+"Magic Numbers in Range": `#include<iostream>
+using namespace std;
+bool isMagic(int n){ int sum=0; while(n){ sum+=n%10; n/=10;} if(sum>9) return isMagic(sum); return sum==1;}
+int main(){ int low,high; cin>>low>>high; for(int i=low;i<=high;i++) if(isMagic(i)) cout<<i<<" "; return 0;}`,
+
+"Neon Numbers in Range": `#include<iostream>
+using namespace std;
+int sumDigits(int n){ if(n==0) return 0; return n%10+sumDigits(n/10);}
+int main(){ int low,high; cin>>low>>high; for(int i=low;i<=high;i++){ int sq=i*i; if(sumDigits(sq)==i) cout<<i<<" ";} return 0;}`,
+
+"Check Automorphic Recursively": `#include<iostream>
+using namespace std;
+bool isAutomorphic(int n,int sq){ if(n==0) return true; if(n%10!=sq%10) return false; return isAutomorphic(n/10,sq/10);}
+int main(){ int n; cin>>n; int sq=n*n; if(isAutomorphic(n,sq)) cout<<"Automorphic"<<endl; else cout<<"Not Automorphic"<<endl; return 0;}`,
+
+"Sum of Factors Recursively": `#include<iostream>
+using namespace std;
+int sumFactors(int n,int i=1){ if(i>n) return 0; return (n%i==0?i:0)+sumFactors(n,i+1);}
+int main(){ int n; cin>>n; cout<<"Sum of factors: "<<sumFactors(n)<<endl; return 0;}`,
+
+"Check Abundant Recursively": `#include<iostream>
+using namespace std;
+int sumFactors(int n,int i=1){ if(i>=n) return 0; return (n%i==0?i:0)+sumFactors(n,i+1);}
+int main(){ int n; cin>>n; if(sumFactors(n)>n) cout<<"Abundant"<<endl; else cout<<"Not Abundant"<<endl; return 0;}`,
+
+"Check Deficient Recursively": `#include<iostream>
+using namespace std;
+int sumFactors(int n,int i=1){ if(i>=n) return 0; return (n%i==0?i:0)+sumFactors(n,i+1);}
+int main(){ int n; cin>>n; if(sumFactors(n)<n) cout<<"Deficient"<<endl; else cout<<"Not Deficient"<<endl; return 0;}`,
+
+"Check Strong Number Recursively": `#include<iostream>
+using namespace std;
+int factorial(int n){ if(n<=1) return 1; return n*factorial(n-1);}
+int sumFactDigits(int n){ if(n==0) return 0; return factorial(n%10)+sumFactDigits(n/10);}
+int main(){ int n; cin>>n; if(sumFactDigits(n)==n) cout<<"Strong Number"<<endl; else cout<<"Not Strong Number"<<endl; return 0;}`,
+
+"Display Factorial Series": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ long long f=1; for(int j=1;j<=i;j++) f*=j; cout<<f<<" ";} return 0;}`,
+
+"Sum of Factorials in Range": `#include<iostream>
+using namespace std;
+long long factorial(int n){ if(n<=1) return 1; return n*factorial(n-1);}
+int main(){ int low,high; cin>>low>>high; long long sum=0; for(int i=low;i<=high;i++) sum+=factorial(i); cout<<sum<<endl; return 0;}`,
+
+"Display Fibonacci Series in Range": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; long long a=0,b=1; cout<<a<<" "<<b<<" "; for(int i=3;i<=n;i++){ long long c=a+b; cout<<c<<" "; a=b; b=c;} return 0;}`,
+"Check Buzz Numbers Recursively": `#include<iostream>
+using namespace std;
+bool isBuzz(int n){ if(n==0) return false; if(n%10==7 || n%7==0) return true; return false;}
+int main(){ int n; cin>>n; if(isBuzz(n)) cout<<"Buzz Number"<<endl; else cout<<"Not Buzz Number"<<endl; return 0;}`,
+
+"Check Sunny Numbers Recursively": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isSunny(int n){ int root=sqrt(n+1); return root*root==(n+1);}
+int main(){ int n; cin>>n; if(isSunny(n)) cout<<"Sunny Number"<<endl; else cout<<"Not Sunny Number"<<endl; return 0;}`,
+
+"Check Evil Numbers Recursively": `#include<iostream>
+using namespace std;
+int countOnes(int n){ if(n==0) return 0; return (n%2)+countOnes(n/2);}
+int main(){ int n; cin>>n; if(countOnes(n)%2==0) cout<<"Evil Number"<<endl; else cout<<"Not Evil Number"<<endl; return 0;}`,
+
+"Check Armstrong Using Function": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isArmstrong(int n){ int sum=0,temp=n; int digits=log10(n)+1; while(temp){ sum+=pow(temp%10,digits); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; if(isArmstrong(n)) cout<<"Armstrong"<<endl; else cout<<"Not Armstrong"<<endl; return 0;}`,
+
+"Check Disarium Using Function": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isDisarium(int n){ int sum=0,temp=n; int digits=log10(n)+1; for(int i=digits;i>=1;i--){ int digit=temp%10; sum+=pow(digit,i); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; if(isDisarium(n)) cout<<"Disarium"<<endl; else cout<<"Not Disarium"<<endl; return 0;}`,
+
+"Check Palindrome Using Function": `#include<iostream>
+using namespace std;
+bool isPalindrome(int n){ int rev=0,temp=n; while(temp){ rev=rev*10+temp%10; temp/=10;} return n==rev;}
+int main(){ int n; cin>>n; if(isPalindrome(n)) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Swap Variables Without Temp": `#include<iostream>
+using namespace std;
+int main(){ int a,b; cin>>a>>b; a=a+b; b=a-b; a=a-b; cout<<"a="<<a<<" b="<<b<<endl; return 0;}`,
+
+"Temperature Conversion Using Function": `#include<iostream>
+using namespace std;
+float cToF(float c){ return c*9/5+32;}
+float fToC(float f){ return (f-32)*5/9;}
+int main(){ float c,f; cin>>c; cin>>f; cout<<"C to F: "<<cToF(c)<<endl; cout<<"F to C: "<<fToC(f)<<endl; return 0;}`,
+
+"Area of Circle Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float areaCircle(float r){ return pi*r*r;}
+int main(){ float r; cin>>r; cout<<"Area: "<<areaCircle(r)<<endl; return 0;}`,
+
+"Area of Triangle Using Function": `#include<iostream>
+using namespace std;
+float areaTriangle(float b,float h){ return 0.5*b*h;}
+int main(){ float b,h; cin>>b>>h; cout<<"Area: "<<areaTriangle(b,h)<<endl; return 0;}`,
+
+"Area of Rectangle Using Function": `#include<iostream>
+using namespace std;
+float areaRectangle(float l,float w){ return l*w;}
+int main(){ float l,w; cin>>l>>w; cout<<"Area: "<<areaRectangle(l,w)<<endl; return 0;}`,
+
+"Volume of Sphere Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float volumeSphere(float r){ return 4.0/3*pi*r*r*r;}
+int main(){ float r; cin>>r; cout<<"Volume: "<<volumeSphere(r)<<endl; return 0;}`,
+
+"Volume of Cylinder Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float volumeCylinder(float r,float h){ return pi*r*r*h;}
+int main(){ float r,h; cin>>r>>h; cout<<"Volume: "<<volumeCylinder(r,h)<<endl; return 0;}`,
+
+"Find Maximum of Three Using Function": `#include<iostream>
+using namespace std;
+int maxOfThree(int a,int b,int c){ return (a>b?(a>c?a:c):(b>c?b:c));}
+int main(){ int a,b,c; cin>>a>>b>>c; cout<<"Max: "<<maxOfThree(a,b,c)<<endl; return 0;}`,
+
+"Find Minimum of Three Using Function": `#include<iostream>
+using namespace std;
+int minOfThree(int a,int b,int c){ return (a<b?(a<c?a:c):(b<c?b:c));}
+int main(){ int a,b,c; cin>>a>>b>>c; cout<<"Min: "<<minOfThree(a,b,c)<<endl; return 0;}`,
+
+"Check Vowel Using Function": `#include<iostream>
+using namespace std;
+bool isVowel(char c){ c=tolower(c); return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');}
+int main(){ char c; cin>>c; if(isVowel(c)) cout<<"Vowel"<<endl; else cout<<"Not Vowel"<<endl; return 0;}`,
+
+"Check Consonant Using Function": `#include<iostream>
+using namespace std;
+bool isConsonant(char c){ c=tolower(c); return (c>='a'&&c<='z'&&!string("aeiou").contains(c));}
+int main(){ char c; cin>>c; if(isConsonant(c)) cout<<"Consonant"<<endl; else cout<<"Not Consonant"<<endl; return 0;}`,
+
+"Find ASCII Value Using Function": `#include<iostream>
+using namespace std;
+int asciiValue(char c){ return int(c);}
+int main(){ char c; cin>>c; cout<<"ASCII: "<<asciiValue(c)<<endl; return 0;}`,
+
+"Sum of Digits Using Function": `#include<iostream>
+using namespace std;
+int sumDigits(int n){ if(n==0) return 0; return n%10+sumDigits(n/10);}
+int main(){ int n; cin>>n; cout<<"Sum: "<<sumDigits(n)<<endl; return 0;}`,
+
+"Reverse Number Using Function": `#include<iostream>
+using namespace std;
+int reverseNum(int n,int rev=0){ if(n==0) return rev; return reverseNum(n/10,rev*10+n%10);}
+int main(){ int n; cin>>n; cout<<"Reversed: "<<reverseNum(n)<<endl; return 0;}`,
+
+"Sum of Array Elements Using Function": `#include<iostream>
+using namespace std;
+int sumArray(int arr[],int n){ if(n==0) return 0; return arr[n-1]+sumArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Sum: "<<sumArray(arr,n)<<endl; return 0;}`,
+
+"Multiply Array Elements Using Function": `#include<iostream>
+using namespace std;
+int multiplyArray(int arr[],int n){ if(n==0) return 1; return arr[n-1]*multiplyArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Product: "<<multiplyArray(arr,n)<<endl; return 0;}`,
+
+"Check Prime in Array": `#include<iostream>
+using namespace std;
+bool isPrime(int n){ if(n<2) return false; for(int i=2;i*i<=n;i++) if(n%i==0) return false; return true;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(isPrime(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Armstrong in Array": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isArmstrong(int n){ int sum=0,temp=n,digits=log10(n)+1; while(temp){ sum+=pow(temp%10,digits); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(isArmstrong(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Perfect Number in Array": `#include<iostream>
+using namespace std;
+int sumFactors(int n){ int sum=0; for(int i=1;i<n;i++) if(n%i==0) sum+=i; return sum;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(arr[i]==sumFactors(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Strong Number in Array": `#include<iostream>
+using namespace std;
+int factorial(int n){ if(n<=1) return 1; return n*factorial(n-1);}
+int sumFactDigits(int n){ if(n==0) return 0; return factorial(n%10)+sumFactDigits(n/10);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(sumFactDigits(arr[i])==arr[i]) cout<<arr[i]<<" "; return 0;}`,
+
+"Sort Array Using Bubble Sort": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n-1;i++) for(int j=0;j<n-i-1;j++) if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]); for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+"Check Buzz Numbers Recursively": `#include<iostream>
+using namespace std;
+bool isBuzz(int n){ if(n==0) return false; if(n%10==7 || n%7==0) return true; return false;}
+int main(){ int n; cin>>n; if(isBuzz(n)) cout<<"Buzz Number"<<endl; else cout<<"Not Buzz Number"<<endl; return 0;}`,
+
+"Check Sunny Numbers Recursively": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isSunny(int n){ int root=sqrt(n+1); return root*root==(n+1);}
+int main(){ int n; cin>>n; if(isSunny(n)) cout<<"Sunny Number"<<endl; else cout<<"Not Sunny Number"<<endl; return 0;}`,
+
+"Check Evil Numbers Recursively": `#include<iostream>
+using namespace std;
+int countOnes(int n){ if(n==0) return 0; return (n%2)+countOnes(n/2);}
+int main(){ int n; cin>>n; if(countOnes(n)%2==0) cout<<"Evil Number"<<endl; else cout<<"Not Evil Number"<<endl; return 0;}`,
+
+"Check Armstrong Using Function": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isArmstrong(int n){ int sum=0,temp=n; int digits=log10(n)+1; while(temp){ sum+=pow(temp%10,digits); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; if(isArmstrong(n)) cout<<"Armstrong"<<endl; else cout<<"Not Armstrong"<<endl; return 0;}`,
+
+"Check Disarium Using Function": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isDisarium(int n){ int sum=0,temp=n; int digits=log10(n)+1; for(int i=digits;i>=1;i--){ int digit=temp%10; sum+=pow(digit,i); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; if(isDisarium(n)) cout<<"Disarium"<<endl; else cout<<"Not Disarium"<<endl; return 0;}`,
+
+"Check Palindrome Using Function": `#include<iostream>
+using namespace std;
+bool isPalindrome(int n){ int rev=0,temp=n; while(temp){ rev=rev*10+temp%10; temp/=10;} return n==rev;}
+int main(){ int n; cin>>n; if(isPalindrome(n)) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Swap Variables Without Temp": `#include<iostream>
+using namespace std;
+int main(){ int a,b; cin>>a>>b; a=a+b; b=a-b; a=a-b; cout<<"a="<<a<<" b="<<b<<endl; return 0;}`,
+
+"Temperature Conversion Using Function": `#include<iostream>
+using namespace std;
+float cToF(float c){ return c*9/5+32;}
+float fToC(float f){ return (f-32)*5/9;}
+int main(){ float c,f; cin>>c; cin>>f; cout<<"C to F: "<<cToF(c)<<endl; cout<<"F to C: "<<fToC(f)<<endl; return 0;}`,
+
+"Area of Circle Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float areaCircle(float r){ return pi*r*r;}
+int main(){ float r; cin>>r; cout<<"Area: "<<areaCircle(r)<<endl; return 0;}`,
+
+"Area of Triangle Using Function": `#include<iostream>
+using namespace std;
+float areaTriangle(float b,float h){ return 0.5*b*h;}
+int main(){ float b,h; cin>>b>>h; cout<<"Area: "<<areaTriangle(b,h)<<endl; return 0;}`,
+
+"Area of Rectangle Using Function": `#include<iostream>
+using namespace std;
+float areaRectangle(float l,float w){ return l*w;}
+int main(){ float l,w; cin>>l>>w; cout<<"Area: "<<areaRectangle(l,w)<<endl; return 0;}`,
+
+"Volume of Sphere Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float volumeSphere(float r){ return 4.0/3*pi*r*r*r;}
+int main(){ float r; cin>>r; cout<<"Volume: "<<volumeSphere(r)<<endl; return 0;}`,
+
+"Volume of Cylinder Using Function": `#include<iostream>
+using namespace std;
+const float pi=3.14159;
+float volumeCylinder(float r,float h){ return pi*r*r*h;}
+int main(){ float r,h; cin>>r>>h; cout<<"Volume: "<<volumeCylinder(r,h)<<endl; return 0;}`,
+
+"Find Maximum of Three Using Function": `#include<iostream>
+using namespace std;
+int maxOfThree(int a,int b,int c){ return (a>b?(a>c?a:c):(b>c?b:c));}
+int main(){ int a,b,c; cin>>a>>b>>c; cout<<"Max: "<<maxOfThree(a,b,c)<<endl; return 0;}`,
+
+"Find Minimum of Three Using Function": `#include<iostream>
+using namespace std;
+int minOfThree(int a,int b,int c){ return (a<b?(a<c?a:c):(b<c?b:c));}
+int main(){ int a,b,c; cin>>a>>b>>c; cout<<"Min: "<<minOfThree(a,b,c)<<endl; return 0;}`,
+
+"Check Vowel Using Function": `#include<iostream>
+using namespace std;
+bool isVowel(char c){ c=tolower(c); return (c=='a'||c=='e'||c=='i'||c=='o'||c=='u');}
+int main(){ char c; cin>>c; if(isVowel(c)) cout<<"Vowel"<<endl; else cout<<"Not Vowel"<<endl; return 0;}`,
+
+"Check Consonant Using Function": `#include<iostream>
+using namespace std;
+bool isConsonant(char c){ c=tolower(c); return (c>='a'&&c<='z'&&!string("aeiou").contains(c));}
+int main(){ char c; cin>>c; if(isConsonant(c)) cout<<"Consonant"<<endl; else cout<<"Not Consonant"<<endl; return 0;}`,
+
+"Find ASCII Value Using Function": `#include<iostream>
+using namespace std;
+int asciiValue(char c){ return int(c);}
+int main(){ char c; cin>>c; cout<<"ASCII: "<<asciiValue(c)<<endl; return 0;}`,
+
+"Sum of Digits Using Function": `#include<iostream>
+using namespace std;
+int sumDigits(int n){ if(n==0) return 0; return n%10+sumDigits(n/10);}
+int main(){ int n; cin>>n; cout<<"Sum: "<<sumDigits(n)<<endl; return 0;}`,
+
+"Reverse Number Using Function": `#include<iostream>
+using namespace std;
+int reverseNum(int n,int rev=0){ if(n==0) return rev; return reverseNum(n/10,rev*10+n%10);}
+int main(){ int n; cin>>n; cout<<"Reversed: "<<reverseNum(n)<<endl; return 0;}`,
+
+"Sum of Array Elements Using Function": `#include<iostream>
+using namespace std;
+int sumArray(int arr[],int n){ if(n==0) return 0; return arr[n-1]+sumArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Sum: "<<sumArray(arr,n)<<endl; return 0;}`,
+
+"Multiply Array Elements Using Function": `#include<iostream>
+using namespace std;
+int multiplyArray(int arr[],int n){ if(n==0) return 1; return arr[n-1]*multiplyArray(arr,n-1);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cout<<"Product: "<<multiplyArray(arr,n)<<endl; return 0;}`,
+
+"Check Prime in Array": `#include<iostream>
+using namespace std;
+bool isPrime(int n){ if(n<2) return false; for(int i=2;i*i<=n;i++) if(n%i==0) return false; return true;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(isPrime(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Armstrong in Array": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isArmstrong(int n){ int sum=0,temp=n,digits=log10(n)+1; while(temp){ sum+=pow(temp%10,digits); temp/=10;} return sum==n;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(isArmstrong(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Perfect Number in Array": `#include<iostream>
+using namespace std;
+int sumFactors(int n){ int sum=0; for(int i=1;i<n;i++) if(n%i==0) sum+=i; return sum;}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(arr[i]==sumFactors(arr[i])) cout<<arr[i]<<" "; return 0;}`,
+
+"Check Strong Number in Array": `#include<iostream>
+using namespace std;
+int factorial(int n){ if(n<=1) return 1; return n*factorial(n-1);}
+int sumFactDigits(int n){ if(n==0) return 0; return factorial(n%10)+sumFactDigits(n/10);}
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n;i++) if(sumFactDigits(arr[i])==arr[i]) cout<<arr[i]<<" "; return 0;}`,
+
+"Sort Array Using Bubble Sort": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n-1;i++) for(int j=0;j<n-i-1;j++) if(arr[j]>arr[j+1]) swap(arr[j],arr[j+1]); for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Sort Array Using Selection Sort": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=0;i<n-1;i++){ int minIdx=i; for(int j=i+1;j<n;j++) if(arr[j]<arr[minIdx]) minIdx=j; swap(arr[i],arr[minIdx]); } for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Sort Array Using Insertion Sort": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; for(int i=1;i<n;i++){ int key=arr[i], j=i-1; while(j>=0 && arr[j]>key){ arr[j+1]=arr[j]; j--; } arr[j+1]=key; } for(int i=0;i<n;i++) cout<<arr[i]<<" "; return 0;}`,
+
+"Linear Search Recursively": `#include<iostream>
+using namespace std;
+int linearSearch(int arr[],int n,int key,int idx=0){ if(idx==n) return -1; if(arr[idx]==key) return idx; return linearSearch(arr,n,key,idx+1);}
+int main(){ int n,key; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cin>>key; int res=linearSearch(arr,n,key); if(res!=-1) cout<<"Found at index "<<res<<endl; else cout<<"Not Found"<<endl; return 0;}`,
+
+"Binary Search Recursively": `#include<iostream>
+using namespace std;
+int binarySearch(int arr[],int l,int r,int key){ if(l>r) return -1; int mid=l+(r-l)/2; if(arr[mid]==key) return mid; else if(arr[mid]<key) return binarySearch(arr,mid+1,r,key); else return binarySearch(arr,l,mid-1,key);}
+int main(){ int n,key; cin>>n; int arr[n]; for(int i=0;i<n;i++) cin>>arr[i]; cin>>key; int res=binarySearch(arr,0,n-1,key); if(res!=-1) cout<<"Found at index "<<res<<endl; else cout<<"Not Found"<<endl; return 0;}`,
+
+"Transpose Matrix Recursively": `#include<iostream>
+using namespace std;
+void transpose(int mat[10][10],int res[10][10],int i,int j,int r,int c){ if(i>=r) return; if(j<c){ res[j][i]=mat[i][j]; transpose(mat,res,i,j+1,r,c); } else transpose(mat,res,i+1,0,r,c);}
+int main(){ int r,c; cin>>r>>c; int mat[10][10],res[10][10]; for(int i=0;i<r;i++) for(int j=0;j<c;j++) cin>>mat[i][j]; transpose(mat,res,0,0,r,c); for(int i=0;i<c;i++){ for(int j=0;j<r;j++) cout<<res[i][j]<<" "; cout<<endl; } return 0;}`,
+
+"Matrix Diagonal Sum": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int mat[n][n]; for(int i=0;i<n;i++) for(int j=0;j<n;j++) cin>>mat[i][j]; int sum=0; for(int i=0;i<n;i++) sum+=mat[i][i]; cout<<sum<<endl; return 0;}`,
+
+"Check Identity Matrix": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; int mat[n][n]; bool isIdentity=true; for(int i=0;i<n;i++) for(int j=0;j<n;j++){ cin>>mat[i][j]; if((i==j && mat[i][j]!=1)||(i!=j && mat[i][j]!=0)) isIdentity=false; } if(isIdentity) cout<<"Identity Matrix"<<endl; else cout<<"Not Identity"<<endl; return 0;}`,
+
+"Check Uppercase in String": `#include<iostream>
+using namespace std;
+int main(){ string s; cin>>s; for(char c:s) if(isupper(c)) cout<<c; cout<<endl; return 0;}`,
+
+"Check Lowercase in String": `#include<iostream>
+using namespace std;
+int main(){ string s; cin>>s; for(char c:s) if(islower(c)) cout<<c; cout<<endl; return 0;}`,
+
+"Convert String to Uppercase Recursively": `#include<iostream>
+using namespace std;
+void toUpper(string &s,int i=0){ if(i>=s.size()) return; if(islower(s[i])) s[i]=toupper(s[i]); toUpper(s,i+1);}
+int main(){ string s; cin>>s; toUpper(s); cout<<s<<endl; return 0;}`,
+
+"Convert String to Lowercase Recursively": `#include<iostream>
+using namespace std;
+void toLower(string &s,int i=0){ if(i>=s.size()) return; if(isupper(s[i])) s[i]=tolower(s[i]); toLower(s,i+1);}
+int main(){ string s; cin>>s; toLower(s); cout<<s<<endl; return 0;}`,
+
+"Count Words in String Recursively": `#include<iostream>
+using namespace std;
+int countWords(string s,int i=0,int count=0){ if(i>=s.size()) return count+1; if(s[i]==' ' && s[i+1]!=' ' && s[i+1]!='\0') count++; return countWords(s,i+1,count);}
+int main(){ string s; getline(cin,s); cout<<"Words: "<<countWords(s)<<endl; return 0;}`,
+
+"Remove Spaces Recursively": `#include<iostream>
+using namespace std;
+void removeSpaces(string &s,int i=0){ if(i>=s.size()) return; if(s[i]==' ') s.erase(i,1); removeSpaces(s,i+1);}
+int main(){ string s; getline(cin,s); removeSpaces(s); cout<<s<<endl; return 0;}`,
+
+"Display Patterns Using Loops": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=1;j<=i;j++) cout<<"* "; cout<<endl; } return 0;}`,
+
+"Display Number Patterns": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=1;j<=i;j++) cout<<j<<" "; cout<<endl; } return 0;}`,
+
+"Display Star Patterns": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=1;j<=i;j++) cout<<"*"; cout<<endl; } return 0;}`,
+
+"Pyramid Pattern": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=i;j<n;j++) cout<<" "; for(int j=1;j<=2*i-1;j++) cout<<"*"; cout<<endl;} return 0;}`,
+
+"Inverted Pyramid Pattern": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=n;i>=1;i--){ for(int j=n;j>i;j--) cout<<" "; for(int j=1;j<=2*i-1;j++) cout<<"*"; cout<<endl; } return 0;}`,
+
+"Diamond Star Pattern": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=i;j<n;j++) cout<<" "; for(int j=1;j<=2*i-1;j++) cout<<"*"; cout<<endl;} for(int i=n-1;i>=1;i--){ for(int j=n;j>i;j--) cout<<" "; for(int j=1;j<=2*i-1;j++) cout<<"*"; cout<<endl;} return 0;}`,
+
+"Triangle Number Pattern": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=1;j<=i;j++) cout<<i<<" "; cout<<endl;} return 0;}`,
+
+"Right Angle Triangle Pattern": `#include<iostream>
+using namespace std;
+int main(){ int n; cin>>n; for(int i=1;i<=n;i++){ for(int j=1;j<=i;j++) cout<<"* "; cout<<endl;} return 0;}`,
+
+"Check Palindrome Sentence": `#include<iostream>
+#include<string>
+using namespace std;
+bool isPalindrome(string s){ string t=""; for(char c:s) if(isalpha(c)) t+=tolower(c); string rev=t; reverse(rev.begin(),rev.end()); return t==rev;}
+int main(){ string s; getline(cin,s); if(isPalindrome(s)) cout<<"Palindrome"<<endl; else cout<<"Not Palindrome"<<endl; return 0;}`,
+
+"Check Anagram Sentence": `#include<iostream>
+#include<string>
+#include<algorithm>
+using namespace std;
+bool isAnagram(string s1,string s2){ string t1="",t2=""; for(char c:s1) if(isalpha(c)) t1+=tolower(c); for(char c:s2) if(isalpha(c)) t2+=tolower(c); sort(t1.begin(),t1.end()); sort(t2.begin(),t2.end()); return t1==t2;}
+int main(){ string s1,s2; getline(cin,s1); getline(cin,s2); if(isAnagram(s1,s2)) cout<<"Anagram"<<endl; else cout<<"Not Anagram"<<endl; return 0;}`,
+
+"Sum of Prime Numbers in Range": `#include<iostream>
+using namespace std;
+bool isPrime(int n){ if(n<2) return false; for(int i=2;i*i<=n;i++) if(n%i==0) return false; return true;}
+int main(){ int l,r; cin>>l>>r; int sum=0; for(int i=l;i<=r;i++) if(isPrime(i)) sum+=i; cout<<sum<<endl; return 0;}`,
+
+"Sum of Even Numbers in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; int sum=0; for(int i=l;i<=r;i++) if(i%2==0) sum+=i; cout<<sum<<endl; return 0;}`,
+
+"Sum of Odd Numbers in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; int sum=0; for(int i=l;i<=r;i++) if(i%2!=0) sum+=i; cout<<sum<<endl; return 0;}`,
+
+"Print Odd Numbers in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; for(int i=l;i<=r;i++) if(i%2!=0) cout<<i<<" "; return 0;}`,
+
+"Print Even Numbers in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; for(int i=l;i<=r;i++) if(i%2==0) cout<<i<<" "; return 0;}`,
+
+"Sum of Squares in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; int sum=0; for(int i=l;i<=r;i++) sum+=i*i; cout<<sum<<endl; return 0;}`,
+
+"Sum of Cubes in Range": `#include<iostream>
+using namespace std;
+int main(){ int l,r; cin>>l>>r; int sum=0; for(int i=l;i<=r;i++) sum+=i*i*i; cout<<sum<<endl; return 0;}`,
+
+"Check Armstrong in Range Recursively": `#include<iostream>
+#include<cmath>
+using namespace std;
+bool isArmstrong(int n){ int sum=0,temp=n; int digits=log10(n)+1; while(temp){ sum+=pow(temp%10,digits); temp/=10;} return sum==n;}
+void checkRange(int l,int r){ if(l>r) return; if(isArmstrong(l)) cout<<l<<" "; checkRange(l+1,r);}
+int main(){ int l,r; cin>>l>>r; checkRange(l,r); return 0;}`
 };
+
 
 // Get problem name from URL
 const urlParams = new URLSearchParams(window.location.search);
