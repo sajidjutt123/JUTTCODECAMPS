@@ -40,8 +40,8 @@ footer { background: rgba(255,255,255,0.1); padding:15px 0; text-align:center; f
 <body>
 <header>
     <h1>💻 Jutt's CodeSharp</h1>
-<h2>With Cooperation of Javed Musrani</h2>
-<h3>Aadil Faisal❤️</h3>
+    <h2>With Cooperation of Javed Musrani</h2>
+    <h3>Aadil Faisal❤️</h3>
     <button onclick="toggleDarkMode()" style="margin-top:10px; padding:6px 12px; border:none; border-radius:6px; cursor:pointer; background:#facc15;">Toggle Dark Mode</button>
 </header>
 
@@ -88,7 +88,7 @@ const problems = [
 
 const container = document.getElementById('problemList');
 
-// Original problem cards generation
+// Problem cards generation with Explanation button
 problems.forEach((p,i)=>{
     const card = document.createElement('div');
     card.className='problem-card';
@@ -98,20 +98,24 @@ problems.forEach((p,i)=>{
         <div>
             <button class='btn' onclick="openPractice('${p}')">Practice</button>
             <button class='btn' onclick="openSolution('${p}')">See Solution</button>
+            <button class='btn' onclick="openExplanation('${p}')">Explanation</button>
         </div>
     `;
     container.appendChild(card);
 });
 
-// Original navigation functions
+// Navigation functions
 function openPractice(problem){
     window.location.href = `practice.html?problem=${encodeURIComponent(problem)}`;
 }
 function openSolution(problem){
     window.location.href = `solution.html?problem=${encodeURIComponent(problem)}`;
 }
+function openExplanation(problem){
+    window.location.href = `explanation.html?problem=${encodeURIComponent(problem)}`;
+}
 
-// Original search function
+// Search function
 function searchProblem(){
     const input = document.getElementById('searchInput').value.trim().toLowerCase().replace(/\s+/g, ' ');
     if(!input) return;

@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Problem Explanation</title>
+<style>
+body { font-family:'Poppins', sans-serif; margin:0; padding:20px; background:#0f172a; color:#f9fafb; }
+h1 { color:#facc15; }
+p { font-size:1.1em; line-height:1.6; }
+a { color:#2563eb; text-decoration:none; }
+a:hover { text-decoration:underline; }
+</style>
+</head>
+<body>
+<a href="index.html">← Back to Home</a>
+<h1 id="problemName"></h1>
+<p id="explanation"></p>
+
+<script>
+// Example explanations (add all your problems here)
+const explanations = {
+  'Disarium Number': 'A Disarium number is a number in which the sum of its digits powered with their respective positions equals the number itself. Example: 135 → 1^1 + 3^2 + 5^3 = 135.',
+  'Armstrong Number': 'An Armstrong number is a number that is equal to the sum of its own digits raised to the power of the number of digits. Example: 153 → 1^3 + 5^3 + 3^3 = 153.',
+  'Perfect Number': 'A Perfect number is equal to the sum of its positive divisors, excluding itself. Example: 6 → 1 + 2 + 3 = 6.',
+  'Strong Number': 'A Strong number is a number whose sum of the factorial of digits equals the number itself. Example: 145 → 1! + 4! + 5! = 145.',
+  'Palindrome Number': 'A Palindrome number reads the same forward and backward. Example: 121, 1331.',
+  'Prime Number': 'A Prime number is greater than 1 and has no divisors other than 1 and itself. Example: 2, 3, 5, 7.',
+  'Composite Number': 'A Composite number has more than two positive divisors. Example: 4, 6, 8, 9.',
+  'Harshad Number': 'A Harshad number is divisible by the sum of its digits. Example: 18 → 1+8=9, 18 is divisible by 9.',
+  'Abundant Number': 'An Abundant number is a number where the sum of its proper divisors is greater than the number itself. Example: 12 → 1+2+3+4+6=16 > 12.',
+  'Deficient Number': 'A Deficient number is a number where the sum of its proper divisors is less than the number itself. Example: 8 → 1+2+4=7 < 8.',
+  'Automorphic Number': 'An Automorphic number is a number whose square ends with the number itself. Example: 25 → 25^2=625.',
+  'Spy Number': 'A Spy number is a number where the sum of digits equals the product of digits. Example: 123 → 1+2+3=6, 1*2*3=6.',
+  'Magic Number': 'A Magic number is a number where repeated sum of its digits leads to 1. Example: 19 → 1+9=10 → 1+0=1.',
+  'Neon Number': 'A Neon number is a number where the sum of digits of its square equals the number. Example: 9 → 9^2=81, 8+1=9.',
+  'Happy Number': 'A Happy number leads to 1 when replaced by the sum of squares of digits repeatedly. Example: 19 → 1²+9²=82 → ... → 1.',
+  'Duck Number': 'A Duck number contains zero in its digits except the first digit. Example: 102, 302.',
+  'Buzz Number': 'A Buzz number is divisible by 7 or ends with 7. Example: 14, 17.',
+  'Evil Number': 'An Evil number has even number of 1s in binary representation. Example: 3 → 11 (2 ones).',
+  'Sunny Number': 'A Sunny number is a number whose next number is a perfect square. Example: 8 → 9 is perfect square.',
+  'Kaprekar Number': 'A Kaprekar number when squared, its right part of digits added to left part equals the number. Example: 45 → 45^2=2025 → 20+25=45.',
+  'Fibonacci Series': 'A series where each number is sum of previous two. Example: 0,1,1,2,3,5,...',
+  'Factorial Calculation': 'The factorial of n (n!) is the product of all positive integers ≤ n. Example: 5! = 5*4*3*2*1 = 120.',
+  'LCM of Two Numbers': 'LCM (Least Common Multiple) is the smallest number divisible by both numbers.',
+  'GCD of Two Numbers': 'GCD (Greatest Common Divisor) is the largest number that divides both numbers exactly.',
+  'Reverse a Number': 'Reversing a number means writing its digits backward. Example: 123 → 321.',
+  'Sum of Digits': 'Sum of Digits is adding all digits of a number. Example: 123 → 1+2+3=6.',
+  'Product of Digits': 'Product of Digits is multiplying all digits of a number. Example: 123 → 1*2*3=6.',
+  'Check Leap Year': 'A Leap Year is divisible by 4 but not by 100 unless divisible by 400.',
+  'Binary to Decimal': 'Convert binary number to decimal. Example: 101 → 5.',
+  'Decimal to Binary': 'Convert decimal number to binary. Example: 5 → 101.',
+  'Perfect Square Check': 'A number is perfect square if square root is integer. Example: 16 → √16=4.',
+  'Largest Digit': 'Find the largest digit in a number. Example: 482 → 8.',
+  'Smallest Digit': 'Find the smallest digit in a number. Example: 482 → 2.',
+  'Co-Prime Numbers': 'Two numbers with GCD 1 are Co-Prime. Example: 8 & 15.',
+  'Even or Odd': 'Determine if a number is even (divisible by 2) or odd.',
+  'Prime in Range': 'Find all prime numbers within a given range.',
+  'Count Digits': 'Count number of digits in a number. Example: 1234 → 4.',
+  'Power of a Number': 'Calculate number^exponent. Example: 2^3=8.',
+  'Armstrong in Range': 'Find all Armstrong numbers within a range.',
+  'Sum of Even Digits': 'Sum only the even digits of a number. Example: 1234 → 2+4=6.',
+  'Sum of Odd Digits': 'Sum only the odd digits. Example: 1234 → 1+3=4.',
+  'Strong in Range': 'Find all Strong numbers within a range.',
+  'Display Prime Numbers': 'Print all prime numbers up to a given limit.',
+  'Fibonacci till N': 'Print Fibonacci series up to Nth term.',
+  'Sum of Series': 'Sum a series of numbers, e.g., 1+2+3+...+n.',
+  'Pattern 1': 'Print first type of pattern using loops (e.g., triangle of stars).',
+  'Pattern 2': 'Print second type of pattern using loops (e.g., inverted triangle).',
+  'Pattern 3': 'Print third type of pattern using loops (e.g., diamond pattern).',
+  'ASCII Value Finder': 'Find ASCII value of a character. Example: A → 65.',
+  'Simple Calculator': 'Perform basic operations: +, -, *, / between two numbers.',
+  'Swap Two Numbers': 'Swap values of two numbers using temporary variable or without temp.',
+  'Positive or Negative': 'Check if a number is positive, negative, or zero.',
+  'Temperature Converter': 'Convert temperature between Celsius, Fahrenheit, Kelvin.',
+  'Area of Circle': 'Area = π*r^2',
+  'Area of Triangle': 'Area = 0.5*base*height',
+  'Area of Rectangle': 'Area = length*width',
+  'Volume of Sphere': 'Volume = 4/3 * π * r^3',
+  'Volume of Cylinder': 'Volume = π * r^2 * h',
+  'ASCII Character Type': 'Check if character is uppercase, lowercase, digit, or special character.',
+  'Vowel or Consonant': 'Check if alphabet character is vowel or consonant.',
+  'Maximum of Three Numbers': 'Find the largest among three numbers.',
+  'Minimum of Three Numbers': 'Find the smallest among three numbers.',
+  'Digit Check': 'Check if a character is a digit.',
+  'Alphabet Case Check': 'Check if a character is uppercase or lowercase.',
+  'Count Vowels': 'Count number of vowels in a string.',
+  'Count Consonants': 'Count number of consonants in a string.',
+  'Reverse String': 'Reverse the characters of a string.',
+  'Palindrome String': 'Check if a string reads same forwards and backwards.',
+  'Remove Spaces': 'Remove all spaces from a string.',
+  'String Length': 'Find number of characters in a string.',
+  'Uppercase String': 'Convert all characters to uppercase.',
+  'Lowercase String': 'Convert all characters to lowercase.',
+  'Word Count': 'Count number of words in a string.',
+  'Special Characters Count': 'Count number of non-alphanumeric characters in a string.',
+  'Check Anagram': 'Check if two strings are anagrams (same letters, different order).',
+  'Repeated Characters Count': 'Count characters that appear more than once in a string.',
+  'Character Frequency': 'Find frequency of each character in a string.',
+  'Sum of Array Elements': 'Add all elements of an array.',
+  'Maximum in Array': 'Find the largest element in an array.',
+  'Minimum in Array': 'Find the smallest element in an array.',
+  'Second Largest in Array': 'Find the second largest element in an array.',
+  'Even Numbers in Array': 'Display all even numbers from an array.',
+  'Odd Numbers in Array': 'Display all odd numbers from an array.',
+  'Reverse Array': 'Reverse the elements of an array.',
+  'Sort Ascending': 'Sort array elements in ascending order.',
+  'Sort Descending': 'Sort array elements in descending order.',
+  'Merge Arrays': 'Combine two arrays into one.',
+  'Matrix Addition': 'Add two matrices element by element.',
+  'Matrix Multiplication': 'Multiply two matrices according to matrix multiplication rules.',
+  'Transpose of Matrix': 'Swap rows with columns of a matrix.',
+  'Identity Matrix Check': 'Check if a matrix is an identity matrix (1s on diagonal, 0s elsewhere).',
+  'Diagonal Sum': 'Find the sum of the diagonal elements of a matrix.',
+  'Factorial using Recursion': 'Calculate factorial using recursive function.',
+  'Fibonacci using Recursion': 'Generate Fibonacci series using recursion.',
+  'Binary Search': 'Search a sorted array by repeatedly dividing search interval in half.',
+  'Linear Search': 'Search an array by checking each element sequentially.',
+  'Bubble Sort': 'Sort array by repeatedly swapping adjacent elements if in wrong order.',
+  'Selection Sort': 'Sort array by repeatedly selecting minimum element and moving it to correct position.',
+  'Insertion Sort': 'Sort array by inserting elements into their correct position one by one.',
+  'Prime using Function': 'Check if number is prime using a separate function.',
+  'Armstrong using Function': 'Check Armstrong number using a separate function.',
+  'Perfect Number using Function': 'Check Perfect number using a function.',
+  'Strong Number using Function': 'Check Strong number using a function.',
+  'Prime Number Between Two Numbers': 'Find all prime numbers between two given numbers.',
+  'Pair Prime Numbers With Difference Of Two Between Two Numbers': 'Find all prime pairs between two numbers whose difference is 2 (twin primes).'
+};
+
+
+// Get problem name from URL
+const urlParams = new URLSearchParams(window.location.search);
+const problem = urlParams.get('problem');
+
+document.getElementById('problemName').textContent = problem || 'Problem';
+document.getElementById('explanation').textContent = explanations[problem] || 'Explanation not available yet.';
+</script>
+</body>
+</html>
